@@ -30,7 +30,7 @@ const Declaration = ({ route }) => {
           <View style={{ height: '15%', justifyContent: 'center', backgroundColor: '#c49b33' }}>
             <Modals.Header title='Authorise "iAM Smart" to provide personal information' />
           </View>
-          <View style={{ ...styles.modal, width: '100%', height: '70%' }}>
+          <View style={{ ...styles.modal, width: '100%', height: '85%' }}>
             <View style={{ marginLeft: 30, marginTop: 25, flexDirection: 'row' }}>
               <View>
                 <Text style={{ color: '#000', fontSize: 20, fontWeight: 'bold' }}>Document: </Text>
