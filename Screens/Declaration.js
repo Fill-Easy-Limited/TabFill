@@ -14,14 +14,53 @@ const Declaration = ({ route }) => {
   const { token1 } = route.params;
   const [hkic, setHkic] = useState('****');
   const [url, setUrl] = useState('');
+  const [hash1, setHash1] = useState('');
+  const [decoded, setDecoded] = useState({});
   const [isModalVisible, setModalVisible] = useState(false);
   const signToken = useSelector((state) => state.userInfo.signToken);
   const normSignToken = useSelector((state) => state.userInfo.normSignToken);
+  const profileToken = useSelector((state) => state.userInfo.profileToken);
 
 
   function redirectToIams() {
     Linking.openURL(url);
   }
+
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+  const atob1 = (input = '') => {
+    let str = input.replace(/=+$/, '');
+    let output = '';
+
+    if (str.length % 4 == 1) {
+      throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
+    }
+    for (let bc = 0, bs = 0, buffer, i = 0;
+      buffer = str.charAt(i++);
+
+      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+    ) {
+      buffer = chars.indexOf(buffer);
+    }
+
+    return output;
+  }
+
+  useEffect(() => {
+    if (profileToken && profileToken.length > 0) {
+      jwtParts = profileToken.split('.',);
+      console.log("JWT parts", jwtParts);
+      let tokenPayload = jwtParts[1];
+      console.log("Token load", tokenPayload);
+      let decryptedResultsString = atob1(tokenPayload);
+      console.log("Decrypted results ", decryptedResultsString);
+      let prof1 = JSON.parse(decryptedResultsString);
+      setDecoded(prof1.formFilling);
+      console.log("idNo?.Identification", prof1.formFilling.idNo?.Identification);
+      hkicHash1(prof1.formFilling.idNo?.Identification);
+    }
+  }, [])
 
   const ModalPop = () => {
     return (
@@ -128,7 +167,29 @@ const Declaration = ({ route }) => {
 
   const navigation = useNavigation();
 
+  const { idNo } = decoded;
+
+  const hkicHash1 = async (hkic) => {
+
+    console.log("Hkic hash ", hkic);
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    fetch("https://api.hashify.net/hash/sha256/hex?value=" + hkic, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log("The result for hkic hash", typeof result);
+        let sha = JSON.parse(result);
+        setHash1(sha.Digest);
+      })
+      .catch(error => console.log('error', error));
+  }
+
   const requestSignAnon = async () => {
+
+    console.log("Returned hash", hash1);
 
     var myHeaders = new Headers();
     myHeaders.append("x-client-id", "cd89d333a7ec42d288421971dfb02d1d");
@@ -142,11 +203,14 @@ const Declaration = ({ route }) => {
       'redirect': 'fill-easy-demo://sign/',
       'name': 'Loan application form',
       // 'hkicHash': '4753bd125a926815892a6551933d70d687e2bcef17b608863cd8bd4e0e709f23',
-      // 'fileHash': 'af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301',
-      "hkicHash": "c913c226c44240d29854783a3ff33c0b2e8ed1136224fb8f537716ef003c2b70",
-    "fileHash": "af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301",
+      // 'fileHash': 'af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301', 
+      // "hkicHash": "c913c226c44240d29854783a3ff33c0b2e8ed1136224fb8f537716ef003c2b70", G996963
+      "hkicHash" : hash1,
+      "fileHash": "af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301",
       'service': 'Digital Signing of Supplementary Card Application Form by fill-easy'
     });
+
+    console.log("Body request ", raw);
 
     var requestOptions = {
       method: 'POST',
@@ -174,7 +238,7 @@ const Declaration = ({ route }) => {
 
   useEffect(() => {
     let interval;
-    if (normSignToken.length > 0) {
+    if (normSignToken && normSignToken.length > 0) {
       interval = setInterval(reqNormSignResults, 1000);
     }
     return () => {
@@ -196,6 +260,7 @@ const Declaration = ({ route }) => {
       "token": `${tokenasync}`,
       "source": "PC_Browser",
       "name": "Loan application form",
+      // "hash": hash1, 
       "hash": "c913c226c44240d29854783a3ff33c0b2e8ed1136224fb8f537716ef003c2b70", //"a642a0edd1f3f8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a9",
       "service": "Digital Signing of Supplementary Card Application Form by fill-easy"
     });

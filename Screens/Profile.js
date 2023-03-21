@@ -179,9 +179,6 @@ const Profile = ({ route }) => {
     navigation.navigate('Basicinformtion', { token: '' })
   }
 
-  const navToBasic = () => {
-  }
-
   const requestEme = async () => {
 
     var myHeaders = new Headers();
