@@ -42,8 +42,8 @@ const RequestLogin = () => {
   const requestLoginAnon = async () => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-client-id", "cd89d333a7ec42d288421971dfb02d1d");
-    myHeaders.append("x-client-secret", "9b7a597d7a574d439566b259c5d67281a9829404e9024b20b1f42d5e99bb0673");
+    myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
+    myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -60,7 +60,7 @@ const RequestLogin = () => {
       redirect: 'follow'
     };
 
-    fetch("https://dev.fill-easy.com/iamsmart/request/qr", requestOptions)
+    fetch("https://testing.fill-easy.com/iamsmart/request/qr", requestOptions)
       .then(response => response.text())
       .then(result => {
         const res = JSON.parse(result)
