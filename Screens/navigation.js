@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import configureStore from "../Screens/redux/store";
+
 //import base64 from 'react-native-base64'
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -23,12 +23,16 @@ import Profile from "../Screens/Profile";
 import Basicinformation from "../Screens/Basicinformation";
 import base64 from 'react-native-base64'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Seeting from "./Setting";
 
 const Stack = createNativeStackNavigator();
-
-const store = configureStore();
-
 const Rootnavigation = () => {
+
+    
+    const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
+    const xclientid  = useSelector(state => state?.envInfo?.xclient)
+    const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+   
 
     const linking = {
         prefixes: ["https://fill-easy.com/", 'fill-easy-demo://'],
@@ -53,8 +57,8 @@ const Rootnavigation = () => {
 
         const tokenasync = await AsyncStorage.getItem('@token')
         var myHeaders = new Headers();
-        myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-        myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+        myHeaders.append("x-client-id", xclientid);
+        myHeaders.append("x-client-secret", xsecretid);
         myHeaders.append("Content-Type", "application/json");
 
         console.log("state ", tokenasync);
@@ -70,7 +74,7 @@ const Rootnavigation = () => {
             redirect: 'follow'
         };
 
-        fetch("https://testing.fill-easy.com/iamsmart/callback/client", requestOptions)
+        fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log("Form filling profile base 64", result);
@@ -90,8 +94,8 @@ const Rootnavigation = () => {
 
         const tokenasync = await AsyncStorage.getItem('@authtoken')
         var myHeaders = new Headers();
-        myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-        myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+        myHeaders.append("x-client-id", xclientid);
+        myHeaders.append("x-client-secret", xsecretid);
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         console.log("state ", tokenasync);
@@ -107,7 +111,7 @@ const Rootnavigation = () => {
             redirect: 'follow'
         };
 
-        fetch("https://testing.fill-easy.com/iamsmart/callback/client", requestOptions)
+        fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log("Form filling profile for normal base 64 with permanent token", result);
@@ -128,8 +132,8 @@ const Rootnavigation = () => {
 
         const tokenasync = await AsyncStorage.getItem('@signtoken')
         var myHeaders = new Headers();
-        myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-        myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+        myHeaders.append("x-client-id", xclientid);
+        myHeaders.append("x-client-secret", xsecretid);
         myHeaders.append("Content-Type", "application/json");
 
         console.log("state ", tokenasync);
@@ -145,7 +149,7 @@ const Rootnavigation = () => {
             redirect: 'follow'
         };
 
-        fetch("https://testing.fill-easy.com/iamsmart/callback/client", requestOptions)
+        fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log("Form filling profile base 64", result);
@@ -166,7 +170,7 @@ const Rootnavigation = () => {
         <NavigationContainer linking={linking}>
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
-                initialRouteName="Requestlogin"
+             initialRouteName="Requestlogin"
             // initialRouteName="Basicinformtion"
             >
                 <Stack.Screen name="Requestlogin" component={RequestLogin} />
@@ -175,6 +179,7 @@ const Rootnavigation = () => {
                 <Stack.Screen name="Completation" component={Completation} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Basicinformtion" component={Basicinformation} />
+                <Stack.Screen name="Seeting" component={Seeting} />
                 <Stack.Screen
                     name="Scanqrcode"
                     component={Scanqrcode}

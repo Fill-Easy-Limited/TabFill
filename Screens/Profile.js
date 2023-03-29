@@ -37,6 +37,10 @@ const Profile = ({ route }) => {
   const nprofileToken = useSelector((state) => state.userInfo.normProfileToken);
   const authToken = useSelector((state) => state.userInfo.authToken);
 
+  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid  = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [url, setUrl] = useState('');
@@ -115,8 +119,8 @@ const Profile = ({ route }) => {
   const requestEmeAnon = async () => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-    myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+    myHeaders.append("x-client-id", xclientid);
+    myHeaders.append("x-client-secret", xsecretid);
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -158,7 +162,7 @@ const Profile = ({ route }) => {
       redirect: 'follow'
     };
 
-    fetch("https://testing.fill-easy.com/iamsmart/request/eme-anonymous", requestOptions)
+    fetch(`https://${baseUrl}/iamsmart/request/eme-anonymous`, requestOptions)
       .then(response => response.text())
       .then(result => {
         const res = JSON.parse(result)
@@ -182,8 +186,8 @@ const Profile = ({ route }) => {
   const requestEme = async () => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-    myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+    myHeaders.append("x-client-id", xclientid);
+    myHeaders.append("x-client-secret", xsecretid);
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -222,7 +226,7 @@ const Profile = ({ route }) => {
       redirect: 'follow'
     };
 
-    fetch("https://testing.fill-easy.com/iamsmart/request/eme", requestOptions)
+    fetch(`https://${baseUrl}/iamsmart/request/eme`, requestOptions)
       .then(response => response.text())
       .then(result => {
         const res = JSON.parse(result)

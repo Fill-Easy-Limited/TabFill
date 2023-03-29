@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 const Basicinformation = ({ route }) => {
 
   const [value, setValue] = useState(96000);
-  const { token } = route.params;
+  const { token } = route?.params;
   const [minval, setMinval] = useState('96,000');
   const [maxval, setMaxval] = useState(1100000);
   const [loader, setLoader] = useState(false);
@@ -59,6 +59,9 @@ const Basicinformation = ({ route }) => {
 
   const profileToken = useSelector((state) => state.userInfo.profileToken);
   const normProfileToken = useSelector((state) => state.userInfo.normProfileToken);
+  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid  = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
   const [decodedData, setDecodedData] = useState({});
   const navigation = useNavigation();
 
@@ -125,8 +128,8 @@ const Basicinformation = ({ route }) => {
   const reqFromDetails = async () => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-    myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+    myHeaders.append("x-client-id", xclientid);
+    myHeaders.append("x-client-secret", xsecretid);
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -140,7 +143,7 @@ const Basicinformation = ({ route }) => {
       redirect: 'follow'
     };
 
-    fetch("https://testing.fill-easy.com/iamsmart/callback/client", requestOptions)
+    fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
       .then(response => response.text())
       .then(result => {
         let obj = JSON.parse(result);
