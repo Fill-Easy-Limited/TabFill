@@ -37,8 +37,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const resetEverything = () => {
-    AsyncStorage.clear();
+  const resetEverything = async () => {
+    // AsyncStorage.clear();
+    await AsyncStorage.removeItem("@signtoken", token);
+    await AsyncStorage.removeItem("@authSigntoken", token);
+    await AsyncStorage.removeItem("@authenticate_token", obj.token);
+    await AsyncStorage.removeItem("@token", token);
+    await AsyncStorage.removeItem("@authtoken", token);
     dispatch({
       type: "CLEAR_ALL",
     });

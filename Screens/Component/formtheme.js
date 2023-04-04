@@ -10,8 +10,13 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
   const dispatch = useDispatch();
   const navigation = useNavigation();
   
-  resetEverything = () => {
-    AsyncStorage.clear();
+  resetEverything = async () => {
+    // AsyncStorage.clear();
+    await AsyncStorage.removeItem("@signtoken", token);
+    await AsyncStorage.removeItem("@authSigntoken", token);
+    await AsyncStorage.removeItem("@authenticate_token", obj.token);
+    await AsyncStorage.removeItem("@token", token);
+    await AsyncStorage.removeItem("@authtoken", token);
     dispatch({
       type: "CLEAR_ALL",
     });

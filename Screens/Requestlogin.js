@@ -29,6 +29,10 @@ const RequestLogin = () => {
   const navigation = useNavigation();
   const authToken = useSelector((state) => state.userInfo.authToken);
 
+  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid  = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+
   useEffect(() => {
     if (authToken && authToken.length > 0) {
       navigation.navigate('Login');
@@ -42,8 +46,8 @@ const RequestLogin = () => {
   const requestLoginAnon = async () => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-client-id", "2588100d923d4af382b6c4033b086419");
-    myHeaders.append("x-client-secret", "21dd677be8984d0b836ac00304803709abd7ac0cb16e4151b539b88029219356");
+    myHeaders.append("x-client-id", xclientid);
+    myHeaders.append("x-client-secret", xsecretid);
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -60,7 +64,7 @@ const RequestLogin = () => {
       redirect: 'follow'
     };
 
-    fetch("https://testing.fill-easy.com/iamsmart/request/qr", requestOptions)
+    fetch(`https://${baseUrl}/iamsmart/request/qr`, requestOptions)
       .then(response => response.text())
       .then(result => {
         const res = JSON.parse(result)
@@ -74,6 +78,11 @@ const RequestLogin = () => {
       })
       .catch(error => console.log('error', error));
   }
+
+
+  useEffect(() => {
+    console.log("Base2 is ", baseUrl);
+  }, [baseUrl])
 
   return (
     <View style={{ flex: 1 }}>
@@ -160,6 +169,7 @@ const RequestLogin = () => {
                   paddingVertical: 10,
                   borderRadius: 33,
                 }}
+                onPress={() => navigation.navigate('Setting')}
               >
                 <Text
                   style={{
@@ -168,7 +178,7 @@ const RequestLogin = () => {
                     color: "#FFFFFF",
                   }}
                 >
-                  Explore
+                  Settings
                 </Text>
               </TouchableOpacity>
             </View>

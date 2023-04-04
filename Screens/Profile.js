@@ -37,9 +37,9 @@ const Profile = ({ route }) => {
   const nprofileToken = useSelector((state) => state.userInfo.normProfileToken);
   const authToken = useSelector((state) => state.userInfo.authToken);
 
-  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
-  const xclientid  = useSelector(state => state?.envInfo?.xclient)
-  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+  const baseUrl = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid = useSelector(state => state?.envInfo?.xserver)
 
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);

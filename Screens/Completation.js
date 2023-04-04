@@ -38,8 +38,15 @@ const Completation = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  resetEverything = () => {
-    AsyncStorage.clear();
+  resetEverything = async () => {
+    // AsyncStorage.clear();
+    await AsyncStorage.removeItem("@signtoken");
+    await AsyncStorage.removeItem("@authSigntoken");
+    await AsyncStorage.removeItem("@authenticate_token");
+    await AsyncStorage.removeItem("@token");
+    await AsyncStorage.removeItem("@authtoken");
+
+
     dispatch({
       type: "CLEAR_ALL",
     });

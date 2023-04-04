@@ -23,7 +23,7 @@ import Profile from "../Screens/Profile";
 import Basicinformation from "../Screens/Basicinformation";
 import base64 from 'react-native-base64'
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Seeting from "./Setting";
+import Setting from "./Setting";
 
 const Stack = createNativeStackNavigator();
 const Rootnavigation = () => {
@@ -73,6 +73,9 @@ const Rootnavigation = () => {
             body: raw,
             redirect: 'follow'
         };
+        console.log("Base url", baseUrl);
+        console.log("CLiewnt", xclientid);
+        console.log("Secret ", xsecretid);
 
         fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
             .then(response => response.text())
@@ -110,6 +113,8 @@ const Rootnavigation = () => {
             body: raw,
             redirect: 'follow'
         };
+
+        console.log("Bae url", baseUrl);
 
         fetch(`https://${baseUrl}/iamsmart/callback/client`, requestOptions)
             .then(response => response.text())
@@ -179,7 +184,7 @@ const Rootnavigation = () => {
                 <Stack.Screen name="Completation" component={Completation} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Basicinformtion" component={Basicinformation} />
-                <Stack.Screen name="Seeting" component={Seeting} />
+                <Stack.Screen name="Setting" component={Setting} />
                 <Stack.Screen
                     name="Scanqrcode"
                     component={Scanqrcode}

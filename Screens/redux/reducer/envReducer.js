@@ -6,12 +6,13 @@ const initialState = {
 
 function envReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_BASE_URL":
-      return { ...state, baseurl: action.payload };
-      case "SET_XCLIENT":
-      return { ...state, xclient: action.payload };
-      case "SET_XSERVER":
-      return { ...state, xserver: action.payload };
+    case 'SET_BASE':
+      return {
+        ...state,
+        baseurl: action.payload.base,
+        xclient: action.payload.client,
+        xserver: action.payload.secret,
+      }
 
 
     default:
