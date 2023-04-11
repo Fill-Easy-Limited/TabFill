@@ -20,9 +20,9 @@ const Declaration = ({ route }) => {
   const signToken = useSelector((state) => state.userInfo.signToken);
   const normSignToken = useSelector((state) => state.userInfo.normSignToken);
   const profileToken = useSelector((state) => state.userInfo.profileToken);
-  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
-  const xclientid  = useSelector(state => state?.envInfo?.xclient)
-  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+  const baseUrl = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid = useSelector(state => state?.envInfo?.xserver)
 
 
   function redirectToIams() {
@@ -194,6 +194,18 @@ const Declaration = ({ route }) => {
 
     console.log("Returned hash", hash1);
 
+    const url1 = await AsyncStorage.getItem('@url');
+
+    if (url1.includes('testing.fill-easy.com')) {
+      dispatch({
+        type: "RESET_TEST",
+      });
+    } else {
+      dispatch({
+        type: "RESET_DEV",
+      });
+    }
+
     var myHeaders = new Headers();
     myHeaders.append("x-client-id", xclientid);
     myHeaders.append("x-client-secret", xsecretid);
@@ -208,7 +220,7 @@ const Declaration = ({ route }) => {
       // 'hkicHash': '4753bd125a926815892a6551933d70d687e2bcef17b608863cd8bd4e0e709f23',
       // 'fileHash': 'af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301', 
       // "hkicHash": "c913c226c44240d29854783a3ff33c0b2e8ed1136224fb8f537716ef003c2b70", G996963
-      "hkicHash" : hash1,
+      "hkicHash": hash1,
       "fileHash": "af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301",
       'service': 'Digital Signing of Supplementary Card Application Form by fill-easy'
     });

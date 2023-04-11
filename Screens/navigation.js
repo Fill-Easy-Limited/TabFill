@@ -28,11 +28,11 @@ import Setting from "./Setting";
 const Stack = createNativeStackNavigator();
 const Rootnavigation = () => {
 
-    
-    const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
-    const xclientid  = useSelector(state => state?.envInfo?.xclient)
-    const xsecretid  = useSelector(state => state?.envInfo?.xserver)
-   
+
+    const baseUrl = useSelector(state => state?.envInfo?.baseurl)
+    const xclientid = useSelector(state => state?.envInfo?.xclient)
+    const xsecretid = useSelector(state => state?.envInfo?.xserver)
+
 
     const linking = {
         prefixes: ["https://fill-easy.com/", 'fill-easy-demo://'],
@@ -55,13 +55,26 @@ const Rootnavigation = () => {
 
     const ObtainEmeAnonResults = async () => {
 
+        const url1 = await AsyncStorage.getItem('@url');
         const tokenasync = await AsyncStorage.getItem('@token')
+
+        if (url1.includes('testing.fill-easy.com')) {
+            console.log("Token async ", url1);
+
+            dispatch({
+                type: "RESET_TEST",
+            });
+        } else {
+            console.log("Come dev", url1);
+            dispatch({
+                type: "RESET_DEV",
+            });
+        }
+
         var myHeaders = new Headers();
         myHeaders.append("x-client-id", xclientid);
         myHeaders.append("x-client-secret", xsecretid);
         myHeaders.append("Content-Type", "application/json");
-
-        console.log("state ", tokenasync);
 
         var raw = JSON.stringify({
             "token": tokenasync
@@ -175,7 +188,7 @@ const Rootnavigation = () => {
         <NavigationContainer linking={linking}>
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
-             initialRouteName="Requestlogin"
+                initialRouteName="Requestlogin"
             // initialRouteName="Basicinformtion"
             >
                 <Stack.Screen name="Requestlogin" component={RequestLogin} />

@@ -171,6 +171,7 @@ const Profile = ({ route }) => {
         console.log("Response for 1st api", res);
         console.log("Token data", token);
         AsyncStorage.setItem("@token", token);
+        AsyncStorage.setItem("@url", url1);
         setUrl(url1);
         setModalVisible(true);
         // redirectToIams(url);
