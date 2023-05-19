@@ -6,6 +6,7 @@ import { Modals } from "./Component/ModalPop";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
+import CryptoJS from 'crypto-js';
 
 const Declaration = ({ route }) => {
 
@@ -180,14 +181,16 @@ const Declaration = ({ route }) => {
       redirect: 'follow'
     };
 
-    fetch("https://api.hashify.net/hash/sha256/hex?value=" + hkic, requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        console.log("The result for hkic hash", typeof result);
-        let sha = JSON.parse(result);
-        setHash1(sha.Digest);
-      })
-      .catch(error => console.log('error', error));
+    // fetch("https://api.hashify.net/hash/sha256/hex?value=" + hkic, requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => {
+    //     console.log("The result for hkic hash", typeof result);
+    //     // let sha = JSON.parse(result);
+        let sha = CryptoJS.SHA256(hkic).toString();
+        console.log("The converted data ", sha);
+        setHash1(sha);
+      // })
+      // .catch(error => console.log('error', error));
   }
 
   const requestSignAnon = async () => {
