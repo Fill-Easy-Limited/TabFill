@@ -217,7 +217,7 @@ const Declaration = ({ route }) => {
     var raw = JSON.stringify({
       'lang': 'en-US',
       'scope': 'eidapi_auth eidapi_formFilling eidapi_sign eidapi_fr',
-      'source': 'PC_Browser',
+      'source': 'Android_Chrome',
       'redirect': 'fill-easy-demo://sign/',
       'name': 'Loan application form',
       // 'hkicHash': '4753bd125a926815892a6551933d70d687e2bcef17b608863cd8bd4e0e709f23',
@@ -276,7 +276,7 @@ const Declaration = ({ route }) => {
 
     var raw = JSON.stringify({
       "token": `${tokenasync}`,
-      "source": "PC_Browser",
+      "source": "Android_Chrome",
       "name": "Loan application form",
       // "hash": hash1, 
       "hash": "c913c226c44240d29854783a3ff33c0b2e8ed1136224fb8f537716ef003c2b70", //"a642a0edd1f3f8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a9",

@@ -126,7 +126,7 @@ const Profile = ({ route }) => {
     var raw = JSON.stringify({
       "scope": "eidapi_auth eidapi_formFilling",
       "lang": "en-US",
-      "source": "PC_Browser",
+      "source": "Android_Chrome",
       "redirect": "fill-easy-demo://eme/",
       "profileFields": [
         "idNo",
@@ -193,7 +193,7 @@ const Profile = ({ route }) => {
 
     var raw = JSON.stringify({
       "token": `${authToken}`,
-      "source": "PC_Browser",
+      "source": "Android_Chrome",
       "profileFields": [
         "idNo",
         "enName",

@@ -53,7 +53,7 @@ const RequestLogin = () => {
     var raw = JSON.stringify({
       "scope": "eidapi_auth eidapi_formFilling eidapi_sign eidapi_fr",
       "lang": "en-US",
-      "source": "PC_Browser",
+      "source": "Android_Chrome",
       "redirect": "fill-easy-demo://auth/"
     });
 
