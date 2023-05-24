@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Keyboard } from "react-native";
+import { View, Text, Image, TouchableOpacity, Keyboard, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
@@ -54,7 +54,7 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
           }}
         >
           <Text
-            style={{ fontSize: 58, color: "black", fontFamily: "PTSans-Bold" }}
+            style={{ fontSize: Platform.OS === "ios" ? 40 : 58, color: "black",  }}
           >
             {text}
           </Text>
@@ -69,11 +69,11 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
           <Image
             source={require("../../assets/m2.png")}
             style={{
-              width: 1150,
-              height: 995,
+              width: Platform.OS === "ios" ? 700 : 1150,
+              height: Platform.OS === "ios" ? 900 :  995,
               // marginTop: -750,
               // right: -300,
-              marginTop: -720,
+              marginTop:   -720,
               right: -280,
               resizeMode: "stretch",
               transform: [{ rotate: "25deg" }],
@@ -85,35 +85,35 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
               position: "absolute",
               justifyContent: "space-evenly",
               alignItems: "center",
-              width: "70%",
+              width:  Platform.OS === "ios" ? "80%" : "70%",
               marginTop: 50,
               flexDirection: "row",
             }}
           >
             <TouchableOpacity>
               <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 14 : 18, fontWeight: "bold", color: "white" }}
               >
                 Banking
               </Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 14 : 18, fontWeight: "bold", color: "white" }}
               >
                 Credit Card
               </Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 14 : 18, fontWeight: "bold", color: "white" }}
               >
                 Loans
               </Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 14 : 18, fontWeight: "bold", color: "white" }}
               >
                 Profile
               </Text>
@@ -136,19 +136,20 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
             position: "absolute",
             flexDirection: "row",
             width: "100%",
-            height: 130,
+            height: Platform.OS === "ios" ? 100:  130,
             bottom: 0,
+            
             backgroundColor: "white",
           }}
         >
-          <View style={{ bottom: -30, left: -135 }}>
+          <View style={{ bottom: Platform.OS === "ios" ? -40 : -30, left: -135 }}>
             <Image
               source={require("../../assets/blue.png")}
-              style={{ width: 300, height: 300 }}
+              style={{ width:Platform.OS === "ios" ? 250 : 300, height:Platform.OS === "ios" ? 250 : 300 }}
             />
           </View>
 
-          <View style={{ bottom: -75, left: "100%" }}>
+          <View style={{ bottom: Platform.OS === "ios" ? -80 : -75, left: "100%" }}>
             <Image
               source={require("../../assets/orrange.png")}
               style={{ width: 124, height: 124 }}
@@ -166,8 +167,8 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
               style={{
                 backgroundColor: bottomtext == 'Next' ? '#000' : "#2b7366",
                 borderRadius: 150,
-                width: bottomtext == 'Next' ? 180 : 442,
-                height: 65,
+                width: bottomtext == 'Next' ? Platform.OS === 'ios' ? 160 : 180 : Platform.OS === "ios" ? 260 : 442,
+                height: Platform.OS === "ios" ? 50 : 65,
                 marginTop: 15,
                 flexDirection: "row",
                 alignItems: "center",
@@ -184,11 +185,11 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
                 }
               }}
             >
-              {bottomtext == 'Next' ? <></> : <Image source={require("../../assets/ismart.png")} />}
+              {bottomtext == 'Next' ? <></> : <Image source={require("../../assets/ismart.png")} style={{width : 25,height:25 , resizeMode:"contain"}} />}
               <Text
                 style={{
-                  fontSize: 22,
-                  fontFamily: "PTSans-Bold",
+                  fontSize: Platform.OS === "ios" ? 18 : 22,
+                  
                   color: "white",
                 }}
               >
@@ -201,8 +202,8 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
                 borderWidth: 4,
                 borderColor: "black",
                 borderRadius: 150,
-                width: 166,
-                height: 65,
+                width: Platform.OS === "ios" ? 150 : 166,
+                height: Platform.OS === "ios" ? 45 : 65,
                 marginTop: 15,
                 flexDirection: "row",
                 alignItems: "center",
@@ -212,7 +213,7 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
               onPress={() => {text == 'Basic Informations' ? resetEverything() : navigation.goBack()}}
             >
               <Text
-                style={{ fontSize: 24, fontWeight: "bold", color: "black" }}
+                style={{ fontSize: Platform.OS === 'ios' ? 20 : 24, fontWeight: "bold", color: "black" }}
               >
                 {text == 'User Profile' ? 'Cancel' : 'Back'}
               </Text>

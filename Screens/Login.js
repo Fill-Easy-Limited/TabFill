@@ -21,6 +21,7 @@ import {
   useWindowDimensions,
   TouchableOpacity,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -78,7 +79,7 @@ const Login = () => {
 
             <View style={{ flex: 1, justifyContent: "center" }}>
               <Text
-                style={{ fontSize: 58, fontFamily: "PTSans-Bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 40 : 58,  color: "white" }}
               >
                 Login Completed!
               </Text>
@@ -92,7 +93,7 @@ const Login = () => {
               >
                 <TouchableOpacity
                   style={{
-                    width: "45%",
+                    width:  "45%",
                     backgroundColor: "#8900FF",
                     alignItems: "center",
                     justifyContent: "center",
@@ -102,7 +103,7 @@ const Login = () => {
                   onPress={() => navigation.navigate('Profile', { token1: 'token1' })}
                 >
                   <Text
-                    style={{ fontSize: 24, fontFamily: "PTSans-Bold", color: "white" }}
+                    style={{ fontSize: Platform.OS === "ios" ? 20 : 24,  color: "white" }}
                   >
                     Next
                   </Text>
@@ -120,7 +121,7 @@ const Login = () => {
                   onPress={() => resetEverything()}
                 >
                   <Text
-                    style={{ fontSize: 24, fontFamily: "PTSans-Bold", color: "white" }}
+                    style={{ fontSize: Platform.OS === "ios" ? 20 : 24,  color: "white" }}
                   >
                     Back
                   </Text>
@@ -165,7 +166,7 @@ const Login = () => {
                     style={{
                       fontSize: 18,
                       color: "#FFFFFF",
-                      fontFamily: "PTSans-Bold"
+                      
                     }}
                   >
                     Banking
@@ -176,7 +177,7 @@ const Login = () => {
                     style={{
                       fontSize: 18,
                       color: "#FFFFFF",
-                      fontFamily: "PTSans-Bold"
+                      
                     }}
                   >
                     Creditcard
@@ -187,7 +188,7 @@ const Login = () => {
                     style={{
                       fontSize: 18,
                       color: "#FFFFFF",
-                      fontFamily: "PTSans-Bold"
+                      
                     }}
                   >
                     Loans
@@ -198,7 +199,7 @@ const Login = () => {
                     style={{
                       fontSize: 18,
                       color: "#FFFFFF",
-                      fontFamily: "PTSans-Bold"
+                      
                     }}
                   >
                     Profile
@@ -213,10 +214,10 @@ const Login = () => {
                 </TouchableOpacity>
               </View>
 
-              <View style={{ marginTop: "15%", alignSelf: "center" }}>
+              <View style={{ marginTop: Platform.OS === "ios" ? "0%" : "15%", alignSelf: "center" }}>
                 <Image
                   source={require("../assets/success.png")}
-                  style={{ width: 544, height: 408 }}
+                  style={{ width: Platform.OS === "ios" ? 350 : 544, height:Platform.OS === "ios" ? 300 : 408  , resizeMode:"contain"}}
                 />
               </View>
             </View>

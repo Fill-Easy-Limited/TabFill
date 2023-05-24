@@ -13,6 +13,7 @@ const Declaration = ({ route }) => {
   const dispatch = useDispatch();
   const [tick, setTick] = useState(false);
   const { token1 } = route.params;
+  
   const [hkic, setHkic] = useState('****');
   const [url, setUrl] = useState('');
   const [hash1, setHash1] = useState('');
@@ -142,7 +143,7 @@ const Declaration = ({ route }) => {
                 <Text
                   style={{
                     fontSize: 22,
-                    fontFamily: "PTSans-Bold",
+                    
                     color: "white",
                   }}
                 >

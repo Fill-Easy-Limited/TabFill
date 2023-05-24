@@ -20,6 +20,7 @@ import {
   //Dimensions,
   useWindowDimensions,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -74,7 +75,7 @@ const Completation = () => {
 
             <View style={{ flex: 1, justifyContent: "center" }}>
               <Text
-                style={{ fontSize: 58, fontFamily: "PTSans-Bold", color: "white" }}
+                style={{ fontSize: Platform.OS === "ios" ? 40: 58,  color: "white" }}
               >
                 Application Form Sent!
               </Text>
@@ -92,13 +93,13 @@ const Completation = () => {
                     backgroundColor: "#891eff",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: 65,
+                    height: Platform.OS === "ios" ? 55 : 65,
                     //  paddingVertical: 15,
                     borderRadius: 33,
                   }}
                 >
                   <Text
-                    style={{ fontSize: 24, fontWeight: "bold", color: "white" }}
+                    style={{ fontSize: Platform.OS === "ios" ? 18 : 24, fontWeight: "bold", color: "white" }}
                   >
                     View Status
                   </Text>
@@ -110,13 +111,13 @@ const Completation = () => {
                     borderColor: "white",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: 65,
+                    height: Platform.OS === "ios" ? 55 : 65,
                     borderRadius: 33,
                   }}
                   onPress={() => resetEverything()}
                 >
                   <Text
-                    style={{ fontSize: 24, fontWeight: "bold", color: "white" }}
+                    style={{ fontSize: Platform.OS === "ios" ? 18 : 24, fontWeight: "bold", color: "white" }}
                   >
                     Home
                   </Text>
@@ -210,10 +211,10 @@ const Completation = () => {
                 </TouchableOpacity>
               </View>
 
-              <View style={{ marginTop: "15%", alignSelf: "center" }}>
+              <View style={{ marginTop: Platform.OS === "ios" ? "4%" :"15%", alignSelf: "center" }}>
                 <Image
                   source={require("../assets/complete.png")}
-                  style={{ width: 351, height: 351 }}
+                  style={{ width: Platform.OS === "ios" ? 250 :  351, height: Platform.OS === "ios" ? 250 : 351 }}
                 />
                 <TouchableOpacity style={{ marginLeft: 70 }}>
                   {/* <Text style={{ fontSize: 18, fontFamily: "PTSans-Regular", color: "#67A4E4", textDecorationLine: "underline" }}>applicants.loanform.pdf</Text> */}

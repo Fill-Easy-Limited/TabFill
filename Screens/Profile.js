@@ -29,6 +29,7 @@ const Profile = ({ route }) => {
   const [billadd, setBilladd] = useState("");
 
   const { token1 } = route.params;
+
   const data = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const Profile = ({ route }) => {
                   <Text
                     style={{
                       fontSize: 22,
-                      fontFamily: "PTSans-Bold",
+                      
                       color: "white",
                     }}
                   >
@@ -251,7 +252,8 @@ const Profile = ({ route }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <Formtheme text={"User Profile"}
-        handlenav={route.params.token1 ? requestEme : requestEmeAnon}
+       handlenav={route.params.token1 ? requestEme : requestEmeAnon}
+       
         bottomtext={"Personal data with iAM Smart"}>
         <View style={{ flex: 1, zIndex: -999, paddingHorizontal: 50, marginTop: -50 }}>
           <ScrollView style={{ flex: 1 }}>
@@ -491,7 +493,7 @@ export default Profile;
 const styles = StyleSheet.create({
   title: {
     fontSize: 20,
-    fontFamily: "PTSans-Bold",
+    
     color: "#424242",
   },
   smartimage: { width: 18, height: 23, marginLeft: 5 },

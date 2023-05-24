@@ -188,8 +188,9 @@ const Rootnavigation = () => {
         <NavigationContainer linking={linking}>
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
-                initialRouteName="Requestlogin"
+               initialRouteName="Requestlogin"
             // initialRouteName="Basicinformtion"
+     
             >
                 <Stack.Screen name="Requestlogin" component={RequestLogin} />
                 <Stack.Screen name="Login" component={Login} />

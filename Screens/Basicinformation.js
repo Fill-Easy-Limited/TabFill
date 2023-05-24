@@ -19,7 +19,8 @@ import { useNavigation } from "@react-navigation/native";
 const Basicinformation = ({ route }) => {
 
   const [value, setValue] = useState(96000);
-  const { token } = route?.params;
+ ;// const { token } = route?.params;
+  const { token } = "dfsdfsdf";
   const [minval, setMinval] = useState('96,000');
   const [maxval, setMaxval] = useState(1100000);
   const [loader, setLoader] = useState(false);
@@ -158,7 +159,8 @@ const Basicinformation = ({ route }) => {
           });
           return true;
         }
-        setLoader(true);
+    //    setLoader(true);
+        setLoader(false);
         return false;
       })
       .catch(error => console.log('error', error));
@@ -268,7 +270,7 @@ const Basicinformation = ({ route }) => {
                   <Text
                     style={{
                       fontSize: 22,
-                      fontFamily: "PTSans-Bold",
+                      
                       color: "white",
                     }}
                   >
@@ -293,7 +295,7 @@ const Basicinformation = ({ route }) => {
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <Formtheme text={"User Profile"}
         bottomtext={"Next"} handlenav={navToDeclare} >
-        <View style={{ flex: 1, paddingHorizontal: 50, marginTop: -50 }}>
+        <View style={{ flex: 1, paddingHorizontal: 50, marginTop: -20 }}>
           <ScrollView style={{ flex: 1, marginBottom: 160 }}>
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: "row" }}>

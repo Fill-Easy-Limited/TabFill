@@ -16,6 +16,7 @@ import {
   View,
   TouchableOpacity,
   Linking,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
@@ -29,9 +30,9 @@ const RequestLogin = () => {
   const navigation = useNavigation();
   const authToken = useSelector((state) => state.userInfo.authToken);
 
-  const baseUrl  = useSelector(state => state?.envInfo?.baseurl)
-  const xclientid  = useSelector(state => state?.envInfo?.xclient)
-  const xsecretid  = useSelector(state => state?.envInfo?.xserver)
+  const baseUrl = useSelector(state => state?.envInfo?.baseurl)
+  const xclientid = useSelector(state => state?.envInfo?.xclient)
+  const xsecretid = useSelector(state => state?.envInfo?.xserver)
 
   useEffect(() => {
     if (authToken && authToken.length > 0) {
@@ -102,7 +103,8 @@ const RequestLogin = () => {
         <View
           style={{
             width: "40%",
-            padding: 75,
+            padding: Platform.OS === "ios" ? 25 : 75,
+            //  paddingVertical:80,
             paddingRight: 10,
             height: "100%",
           }}
@@ -121,8 +123,8 @@ const RequestLogin = () => {
           >
             <Text
               style={{
-                fontSize: 58,
-                fontFamily: "PTSans-Bold",
+                fontSize: Platform.OS === "ios" ? 30 : 58,
+
                 color: "#FFFFFF",
               }}
             >
@@ -139,7 +141,7 @@ const RequestLogin = () => {
               <TouchableOpacity
                 style={{
                   width: "45%",
-                  height: 68,
+                  height: Platform.OS === "ios" ? 45 : 68,
 
                   backgroundColor: "#8900FF",
                   alignItems: "center",
@@ -150,8 +152,8 @@ const RequestLogin = () => {
               >
                 <Text
                   style={{
-                    fontSize: 24,
-                    fontFamily: "PTSans-Bold",
+                    fontSize: Platform.OS === "ios" ? 15 : 24,
+
                     color: "#FFFFFF",
                   }}
                 >
@@ -162,7 +164,7 @@ const RequestLogin = () => {
                 style={{
                   width: "45%",
                   borderWidth: 4,
-                  height: 68,
+                  height: Platform.OS === "ios" ? 45 : 68,
                   borderColor: "white",
                   alignItems: "center",
                   justifyContent: "center",
@@ -173,8 +175,8 @@ const RequestLogin = () => {
               >
                 <Text
                   style={{
-                    fontSize: 24,
-                    fontFamily: "PTSans-Bold",
+                    fontSize: Platform.OS === "ios" ? 15 : 24,
+
                     color: "#FFFFFF",
                   }}
                 >
@@ -185,7 +187,7 @@ const RequestLogin = () => {
             <TouchableOpacity
               style={{
                 flexDirection: "row",
-                height: 65,
+                height: Platform.OS === "ios" ? 50 : 65,
                 backgroundColor: "#2B7366",
                 borderRadius: 33,
                 marginTop: 20,
@@ -195,12 +197,12 @@ const RequestLogin = () => {
               }}
               onPress={() => requestLoginAnon()}
             >
-              <Image source={require("../assets/ismart.png")} />
+              <Image source={require("../assets/ismart.png")} style={{ width: Platform.OS === "ios" ? 25 : 30, height: Platform.OS === "ios" ? 30 : 35, resizeMode: "stretch" }} />
               <Text
                 style={{
                   marginLeft: 10,
-                  fontSize: 24,
-                  fontFamily: "PTSans-Bold",
+                  fontSize: Platform.OS === "ios" ? 15 : 24,
+
                   color: "#FFFFFF",
                 }}
               >
@@ -224,9 +226,9 @@ const RequestLogin = () => {
             <TouchableOpacity>
               <Text
                 style={{
-                  fontSize: 18,
+                  fontSize: Platform.OS === "ios" ? 14 : 18,
                   color: "#FFFFFF",
-                  fontFamily: "PTSans-Bold",
+
                   // fontWeight: "600",
                 }}
               >
@@ -236,10 +238,10 @@ const RequestLogin = () => {
             <TouchableOpacity>
               <Text
                 style={{
-                  fontSize: 18,
+                  marginLeft: Platform.OS === "ios" ? 15 : 35,
                   color: "#FFFFFF",
-                  fontFamily: "PTSans-Bold",
-                  marginLeft: 35,
+
+
                 }}
               >
                 Creditcard
@@ -248,10 +250,10 @@ const RequestLogin = () => {
             <TouchableOpacity>
               <Text
                 style={{
-                  fontSize: 18,
+
                   color: "#FFFFFF",
-                  fontFamily: "PTSans-Bold",
-                  marginLeft: 35,
+                  marginRight: Platform.OS === "ios" ? 10 : 35,
+                  marginLeft: Platform.OS === "ios" ? 15 : 35,
                 }}
               >
                 Loans
@@ -261,16 +263,16 @@ const RequestLogin = () => {
               style={{
                 backgroundColor: "white",
                 borderRadius: 33,
-                height: 65,
-                width: 164,
+                height: Platform.OS === "ios" ? 35 : 65,
+                width: Platform.OS === "ios" ? 100 : 164,
                 alignItems: "center",
                 justifyContent: "center",
-                marginLeft: 35,
-                marginRight: 35,
+                marginLeft: Platform.OS === "ios" ? 15 : 35,
+                marginRight: Platform.OS === "ios" ? 15 : 35,
               }}
             >
               <Text
-                style={{ fontSize: 24, fontFamily: "PTSans-Bold", color: "#6E84DB" }}
+                style={{ fontSize: Platform.OS == "ios" ? 17 : 24, color: "#6E84DB" }}
               >
                 Sign up
               </Text>
