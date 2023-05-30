@@ -167,7 +167,7 @@ const Formtheme = ({ children, text, bottomtext, handlenav, disabled = false }) 
               style={{
                 backgroundColor: bottomtext == 'Next' ? '#000' : "#2b7366",
                 borderRadius: 150,
-                width: bottomtext == 'Next' ? Platform.OS === 'ios' ? 160 : 180 : Platform.OS === "ios" ? 260 : 442,
+                width: bottomtext == 'Next' ? Platform.OS === 'ios' ? 160 : 180 : Platform.OS === "ios" ? 300 : 442,
                 height: Platform.OS === "ios" ? 50 : 65,
                 marginTop: 15,
                 flexDirection: "row",
