@@ -314,7 +314,7 @@ const Basicinformation = ({ route }) => {
                       value={enName?.UnstructuredName && enName?.UnstructuredName.length > 0 ? enName?.UnstructuredName : ename}
                       editable={!(enName?.UnstructuredName && enName?.UnstructuredName.length > 0)}
                       onChangeText={(text) => setEname(text)}
-                      style={styles.inputtext}
+                      style={[styles.inputtext, Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 }]}
                     />
                   </View>
                 </View>
@@ -332,7 +332,7 @@ const Basicinformation = ({ route }) => {
                       placeholder=""
                       value={cname}
                       onChangeText={(text) => setCname(text)}
-                      style={styles.inputtext}
+                      style={[styles.inputtext, Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 }]}
                     />
                   </View>
                 </View>
@@ -377,7 +377,11 @@ const Basicinformation = ({ route }) => {
                       value={idNo?.Identification && idNo?.Identification.length > 0 ? `${idNo?.Identification}` : ''}
                       editable={!(idNo?.Identification && idNo?.Identification.length > 0)}
                       // onChangeText={(text) => setCardnumber(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -396,7 +400,11 @@ const Basicinformation = ({ route }) => {
                       editable={!(educationLevel && educationLevel.length > 0)}
                       value={educationLevel && educationLevel.length > 0 ? educationLevel : education}
                       onChangeText={(text) => setEducation(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -420,7 +428,11 @@ const Basicinformation = ({ route }) => {
                       value={birthDate && birthDate.length > 0 ? birthDayConverter(birthDate) : birthDate}
                       editable={!(birthDate && birthDate.length > 0)}
                       onChangeText={(text) => setBirthdate(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -439,7 +451,11 @@ const Basicinformation = ({ route }) => {
                       value={maritalStatus && maritalStatus.length > 0 ? mapMaritalStatus(maritalStatus) : maritalStatus}
                       editable={!(maritalStatus && maritalStatus.length > 0)}
                       onChangeText={(text) => setMaritial(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -461,7 +477,11 @@ const Basicinformation = ({ route }) => {
                       value={emailAddress && emailAddress.length > 0 ? emailAddress : email}
                       editable={!(emailAddress && emailAddress.length > 0)}
                       onChangeText={(text) => setEmail(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -480,7 +500,11 @@ const Basicinformation = ({ route }) => {
                       value={residentialAddress?.EngPremisesAddress?.BuildingName && residentialAddress.EngPremisesAddress.BuildingName.length > 0 ? residentialFormat(residentialAddress) : resAddress}
                       editable={!(residentialAddress?.EngPremisesAddress?.BuildingName && residentialAddress.EngPremisesAddress.BuildingName.length > 0)}
                       onChangeText={(text) => setResAddress(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -502,7 +526,11 @@ const Basicinformation = ({ route }) => {
                       editable={!(mobileNumber && mobileNumber.SubscriberNumber.length > 0)}
                       value={mobileNumber && mobileNumber.SubscriberNumber.length > 0 ? `${mobileNumber.CountryCode} - ${mobileNumber.SubscriberNumber}` : ''}
                       // onChangeText={(text) => setNumber(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -521,7 +549,11 @@ const Basicinformation = ({ route }) => {
                       editable={!(postalAddress?.EngPremisesAddress?.BuildingName && postalAddress.EngPremisesAddress.BuildingName.length > 0)}
                       value={postalAddress?.EngPremisesAddress?.BuildingName && postalAddress.EngPremisesAddress.BuildingName.length > 0 ? residentialFormat(postalAddress) : billAddress}
                       onChangeText={(text) => setBillAddress(text)}
-                      style={{ ...styles.inputtext, width: 350 }}
+                      style={[
+                        styles.inputtext,
+                        Platform.OS === 'ios' && { padding: 15, paddingLeft: 0 },
+                        { width: 350 }
+                      ]}
                     />
                   </View>
                 </View>
@@ -731,5 +763,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: '#D3D3D3'
   },
-  inputtext: { color: "black", fontSize: 18, marginLeft: 25 },
+  inputtext: { color: "black", fontSize: 18, marginLeft: 25, },
 });
