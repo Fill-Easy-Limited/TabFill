@@ -43,11 +43,11 @@ const Rootnavigation = () => {
     useEffect(() => {
         Linking.addEventListener('url', (url) => {
             console.log("URL=====>", url);
-            if (url.url.includes('fill-easy-demo://') && url.url.includes('eme')) {
+            if (url.url.includes('https://fill-easy.com/') && url.url.includes('eme')) {
                 ObtainEmeAnonResults();
-            } else if (url.url.includes('fill-easy-demo://') && url.url.includes('sign')) {
+            } else if (url.url.includes('https://fill-easy.com/') && url.url.includes('sign')) {
                 reqSignResults();
-            } else if (url.url.includes('fill-easy-demo://') && url.url.includes('auth')) {
+            } else if (url.url.includes('https://fill-easy.com/') && url.url.includes('auth')) {
                 ObtainEmeNormResults();
             }
         });

@@ -219,7 +219,7 @@ const Declaration = ({ route }) => {
       'lang': 'en-US',
       'scope': 'eidapi_auth eidapi_formFilling eidapi_sign eidapi_fr',
       'source': 'Android_Chrome',
-      'redirect': 'fill-easy-demo://sign/',
+      'redirect': 'https://fill-easy.com/sign/',//'fill-easy-demo://sign/',
       'name': 'Loan application form',
       // 'hkicHash': '4753bd125a926815892a6551933d70d687e2bcef17b608863cd8bd4e0e709f23',
       // 'fileHash': 'af8b6f626242f214be360fa7d412e42dacb2f48bc11bb089019a912930019301', 

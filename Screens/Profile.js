@@ -128,7 +128,7 @@ const Profile = ({ route }) => {
       "scope": "eidapi_auth eidapi_formFilling",
       "lang": "en-US",
       "source": "Android_Chrome",
-      "redirect": "fill-easy-demo://eme/",
+      "redirect": "https://fill-easy.com/eme/",
       "profileFields": [
         "idNo",
         "enName",
@@ -235,9 +235,10 @@ const Profile = ({ route }) => {
         console.log("Response for Profile norm api", res);
         // console.log("Token data", token);
         const token = res?.token;
+        AsyncStorage.setItem("@token", token);
         // setLoader(true);
         // redirectToIams(url);
-        if (res.status) {
+        if (res.status == 200) {
           navigation.navigate('Basicinformtion', { token: token })
         }
       })

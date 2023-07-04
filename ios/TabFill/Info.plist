@@ -84,30 +84,6 @@
 		<key>CFBundleURLName</key>
 		<string>FilterReactNative</string>
 	  </dict>
-	  <dict>
-		<key>CFBundleURLName</key>
-		<string>Eme</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-		  <string>eme</string>
-		</array>
-	  </dict>
-	  <dict>
-		<key>CFBundleURLName</key>
-		<string>Sign</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-		  <string>sign</string>
-		</array>
-	  </dict>
-	  <dict>
-		<key>CFBundleURLName</key>
-		<string>Auth</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-		  <string>auth</string>
-		</array>
-	  </dict>
 	</array>
 </dict>
 </plist>

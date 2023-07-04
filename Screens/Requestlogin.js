@@ -55,7 +55,7 @@ const RequestLogin = () => {
       "scope": "eidapi_auth eidapi_formFilling eidapi_sign eidapi_fr",
       "lang": "en-US",
       "source": "Android_Chrome",
-      "redirect": "fill-easy-demo://auth/"
+      "redirect": "https://fill-easy.com/auth/"
     });
 
     var requestOptions = {
