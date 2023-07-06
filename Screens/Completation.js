@@ -44,7 +44,7 @@ const Completation = () => {
     await AsyncStorage.removeItem("@signtoken");
     await AsyncStorage.removeItem("@authSigntoken");
     await AsyncStorage.removeItem("@authenticate_token");
-    await AsyncStorage.removeItem("@token");
+    // await AsyncStorage.removeItem("@token");
     await AsyncStorage.removeItem("@authtoken");
 
 

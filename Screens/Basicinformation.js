@@ -19,8 +19,8 @@ import { useNavigation } from "@react-navigation/native";
 const Basicinformation = ({ route }) => {
 
   const [value, setValue] = useState(96000);
- ;// const { token } = route?.params;
-  const { token } = "dfsdfsdf";
+  const { token } = route?.params;
+  // const { token } = "dfsdfsdf";
   const [minval, setMinval] = useState('96,000');
   const [maxval, setMaxval] = useState(1100000);
   const [loader, setLoader] = useState(false);
